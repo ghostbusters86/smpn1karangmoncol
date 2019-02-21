@@ -8,8 +8,8 @@
 		},
 		"link-admin-guru" : "http://localhost/{directory}/ujianonline/" :
 		{
-			"username" : "198212182003071038"
-			"password" " "guru"
+			"username" : "197512182003071038"
+			"password" " "lab"
 		},
 		"link-admin-guru" : "http://localhost/{directory}/ujianonline/" :
 		{

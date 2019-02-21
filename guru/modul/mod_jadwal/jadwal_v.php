@@ -69,36 +69,47 @@ default:
                     <tbody>
                       <?php 
                       $no = 1;
-                      $data = mysql_query("SELECT * FROM exm_schedule ");
-                      while ($row = mysql_fetch_assoc($data)) {
-                        $qk = mysql_query("SELECT * FROM detail_lesson, class WHERE class.class_id = detail_lesson.class_id AND detail_lesson.detail_lesson_id ='$row[detail_lesson_id]'  ");
-                       $rk = mysql_fetch_assoc($qk);
-                       $qp = mysql_query("SELECT * FROM detail_lesson, lesson WHERE lesson.lesson_id = detail_lesson.lesson_id AND detail_lesson.detail_lesson_id ='$row[detail_lesson_id]'  ");
-                       $rp = mysql_fetch_assoc($qp);
-                       $qg = mysql_query("SELECT * FROM detail_lesson, teacher WHERE teacher.nip = detail_lesson.nip AND detail_lesson.detail_lesson_id = '$row[detail_lesson_id]' ");
-                       $rg = mysql_fetch_assoc($qg);
-                        
-                       ?>
-                      <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $row['exm_schedule_name']; ?></td>
-                        <td><?php echo $rk['class_name']; ?></td>
-                        <td><?php echo $rp['lesson_name']; ?></td>
-                        <td><?php echo $rg['name']; ?></td>
-                        <td><?php echo TanggalIndo($row['exm_date']); ?></td>
-                        <td><?php echo $row['exm_hour']; ?></td>
-                        <td width="120px">
-                          <div class="btn-group1">
+                      $qg= mysql_query("SELECT * FROM question_group");
+                      // echo "<pre>";
+                      while ( $row_qg= mysql_fetch_assoc( $qg ) )
+                      {
+                        $q= mysql_query("SELECT question_id FROM question WHERE question_group_id='{$row_qg["question_group_id"]}' ");
+                        if ( mysql_num_rows($q) > 20 ) {
+                          $data = mysql_query("SELECT * FROM exm_schedule WHERE question_group_id='{$row_qg["question_group_id"]}' ");
+                          while ($row = mysql_fetch_assoc($data)) {
+                           $qk = mysql_query("SELECT * FROM detail_lesson, class WHERE class.class_id = detail_lesson.class_id AND detail_lesson.detail_lesson_id ='$row[detail_lesson_id]'  ");
+                           $rk = mysql_fetch_assoc($qk);
+                           $qp = mysql_query("SELECT * FROM detail_lesson, lesson WHERE lesson.lesson_id = detail_lesson.lesson_id AND detail_lesson.detail_lesson_id ='$row[detail_lesson_id]'  ");
+                           $rp = mysql_fetch_assoc($qp);
+                           $qg = mysql_query("SELECT * FROM detail_lesson, teacher WHERE teacher.nip = detail_lesson.nip AND detail_lesson.detail_lesson_id = '$row[detail_lesson_id]' ");
+                           $rg = mysql_fetch_assoc($qg);
+                            
+                           ?>
+                          <tr>
+                            <td><?php echo $no; ?></td>
+                            <td><?php echo $row['exm_schedule_name']; ?></td>
+                            <td><?php echo $rk['class_name']; ?></td>
+                            <td><?php echo $rp['lesson_name']; ?></td>
+                            <td><?php echo $rg['name']; ?></td>
+                            <td><?php echo TanggalIndo($row['exm_date']); ?></td>
+                            <td><?php echo $row['exm_hour']; ?></td>
+                            <td width="120px">
+                              <div class="btn-group1">
+    
+                              <a href="media.php?module=jadwal&act=edit&id=<?php echo $row['exm_schedule_id']; ?>" data-toggle="modal"><button type="button" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-pencil"></i></button></a>
+    
+                              <a href="#hapus<?php echo $row['exm_schedule_id']; ?>" data-toggle="modal"><button type="button" class="btn btn-sm btn-danger" title="Hapus"><i class="fa fa-trash"></i> </button></a>
+    
+    
+                              </div>
+                            </td>
+                          </tr>
+                          <?php $no++; } 
+                        }
+                      }
+                      // echo "</pre>";
 
-                          <a href="media.php?module=jadwal&act=edit&id=<?php echo $row['exm_schedule_id']; ?>" data-toggle="modal"><button type="button" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-pencil"></i></button></a>
-
-                          <a href="#hapus<?php echo $row['exm_schedule_id']; ?>" data-toggle="modal"><button type="button" class="btn btn-sm btn-danger" title="Hapus"><i class="fa fa-trash"></i> </button></a>
-
-
-                          </div>
-                        </td>
-                      </tr>
-                      <?php $no++; } ?>
+                      ?>
                       
                     </tbody>
                     

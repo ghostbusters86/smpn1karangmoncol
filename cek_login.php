@@ -43,6 +43,7 @@ else{
 
 
         header('location:https://www.smpn1karangmoncol.com/guru/media.php?module=home');
+        // header('location:guru/media.php?module=home');
 
     }
 
