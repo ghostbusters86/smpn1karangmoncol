@@ -1,0 +1,12 @@
+RewriteEngine On
+
+#---- Begin Site Map ---#
+RewriteRule (.*)\.xml(.*) $1.php$2 [nocase]
+#---- End Site Map ----#
+
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.smpn1karangmoncol.com/$1 [R,L]
+#Home
+RewriteRule ^ujian-online-smp-negeri-1-karangmoncol\.html$ login.php [L]
+RewriteRule ^daftar-ujian-online-smp-negeri-1-karangmoncol\.html$ daftar.php [L]
+RewriteRule ^register\.html$ simpan_siswa.php [L]

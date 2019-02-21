@@ -1,0 +1,2 @@
+replace all name school
+replace all url

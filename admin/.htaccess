@@ -1,0 +1,1 @@
+RewriteRule ^login-admin-ulangan-online-smp-negeri-1-karangmoncol\.html$ login.php [L]

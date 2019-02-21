@@ -1,0 +1,29 @@
+{
+	"rohman" :
+	{
+		"link-admin" : "http://localhost/{directory}/ujianonline/admin/index.php" :
+		{
+			"username" : "admin"
+			"password" " "admin"
+		},
+		"link-admin-guru" : "http://localhost/{directory}/ujianonline/" :
+		{
+			"username" : "198212182003071038"
+			"password" " "guru"
+		},
+		"link-admin-guru" : "http://localhost/{directory}/ujianonline/" :
+		{
+			"username" : "5350"
+			"password" " "siswa"
+		},
+		{
+			"username" : "5327"
+			"password" " "siswa"
+		},
+		{
+			"username" : "5338"
+			"password" : "siswa"
+		},
+	}
+}
+
